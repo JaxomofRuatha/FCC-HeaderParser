@@ -1,22 +1,13 @@
 const express = require('express');
 const path = require('path');
 
-const index = require("./controllers/index");
-
 const app = express();
 
 //Port setup
-const port = process.env.PORT || 8080;
-
-//Set up path for views and view engine
-app.set("views", path.join(__dirname, "views"));
-app.set("view engine", "pug");
-
-//Set up directory for static served files
-app.use(express.static(path.join(__dirname, "public")));
+const port = process.env.PORT || 3333;
 
 //Set up index as router on root
-app.use('/', index);
+app.use('/', require("./controllers/index"));
 
 //Pass error to error handler for rendering 404.
 app.use((req, res, next) => {
@@ -32,7 +23,6 @@ app.use((err, req, res, next) => {
 
     //Render error page based on passed status
     res.status(err.status || 500);
-    res.render("error404");
 });
 
 //Start server
