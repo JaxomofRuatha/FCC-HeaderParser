@@ -3,13 +3,13 @@ const path = require('path');
 
 const app = express();
 
-//Port setup
+// Port setup
 const port = process.env.PORT || 8080;
 
-//Set up index as router on root
+// Set up index as router on root
 app.use('/', require('./routes'));
 
-//Start server
+// Start server
 app.listen(port, () => {
   console.log('Request header parser server is listening on port ' + port);
 });
